@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/customs.dart';
+import 'package:note_app/widgets/customButton.dart';
 import 'package:note_app/widgets/customTexeField.dart';
 
 class addNewNote extends StatelessWidget {
@@ -7,30 +7,44 @@ class addNewNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-        customTextField(title: "Title"),
-        customTextField(title: "Description", maxLines: 5),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.15),
-
-        ElevatedButton(
-          onPressed: () {},
-          style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(kprimaryColor),
-            fixedSize: WidgetStateProperty.all(
-              Size(
-                MediaQuery.of(context).size.width,
-                MediaQuery.of(context).size.height * 0.05,
-              ),
+    final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+    String? title, description;
+    double height = MediaQuery.of(context).size.height;
+    return SingleChildScrollView(
+      child: Form(
+        key: formkey,
+        child: Column(
+          children: [
+            SizedBox(height: height * 0.05),
+            Customtexefield(
+              title: "Title",
+              onSaved: (value) {
+                title = value;
+              },
             ),
-          ),
-          child: Text(
-            "Add",
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          ),
+            Customtexefield(
+              title: "Description",
+              maxLines: 5,
+              onSaved: (value) {
+                description = value;
+              },
+            ),
+            SizedBox(height: height * 0.15),
+
+            customButton(
+              height: height,
+              onPressed: () {
+                if (formkey.currentState?.validate() ?? false) {
+                  formkey.currentState!.save();
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+
+            SizedBox(height: height * 0.2),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

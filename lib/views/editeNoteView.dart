@@ -13,8 +13,8 @@ class Editenoteview extends StatelessWidget {
       ),
       body: Column(
         children: [
-          customTextField(title: "Title"),
-          customTextField(title: "Description", maxLines: 5),
+          Customtexefield(title: "Tite"),
+          Customtexefield(title: "Description", maxLines: 8),
         ],
       ),
     );

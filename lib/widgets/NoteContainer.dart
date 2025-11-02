@@ -1,51 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/views/editeNoteView.dart';
 
 class Notecontainer extends StatelessWidget {
   const Notecontainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 205, 121),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        children: [
-          ListTile(
-            trailing: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.delete, color: Colors.black, size: 40),
-            ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Text(
-                "Title",
-                style: TextStyle(fontSize: 26, color: Colors.black),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Editenoteview()),
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 255, 205, 121),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          children: [
+            ListTile(
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.delete, color: Colors.black, size: 40),
               ),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Text(
-                "Description adakdjadkljdkasjda;djadsjdal",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+              title: Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.01,
+                ),
+                child: Text(
+                  "Title",
+                  style: TextStyle(fontSize: 26, color: Colors.black),
+                ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "May 20,2023",
+              subtitle: Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.01,
+                ),
+                child: Text(
+                  "Description adakdjadkljdkasjda;djadsjdal",
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.03,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "May 20,2023",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

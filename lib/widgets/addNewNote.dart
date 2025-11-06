@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/cubits/addNote/add_note_cubit.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/widgets/customButton.dart';
 import 'package:note_app/widgets/customTexeField.dart';
 
@@ -36,7 +39,13 @@ class addNewNote extends StatelessWidget {
               onPressed: () {
                 if (formkey.currentState?.validate() ?? false) {
                   formkey.currentState!.save();
-                  Navigator.of(context).pop();
+                  var note = NoteModel(
+                    title: title!,
+                    subtitle: description!,
+                    date: DateTime.now().toString(),
+                    color: Colors.yellow.value,
+                  );
+                  BlocProvider.of<AddNoteCubit>(context).addNote(note);
                 }
               },
             ),

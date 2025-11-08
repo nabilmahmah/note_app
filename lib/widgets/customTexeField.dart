@@ -6,23 +6,24 @@ class Customtexefield extends StatelessWidget {
     super.key,
     required this.title,
     this.maxLines = 1,
-    this.onSaved,
+    this.onChanged,
   });
   final int maxLines;
   final String title;
-  final void Function(String?)? onSaved;
+  final void Function(String?)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsGeometry.all(8),
       child: TextFormField(
         validator: (value) {
-          if (value == null || value.isEmpty) {
+          if (value?.isEmpty ?? true) {
             return "this field is required";
+          } else {
+            return null;
           }
-          return null;
         },
-        onSaved: onSaved,
+        onChanged: onChanged,
         maxLines: maxLines,
         decoration: InputDecoration(
           border: outLineBorder(),

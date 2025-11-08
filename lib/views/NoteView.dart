@@ -30,21 +30,16 @@ class Noteview extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             builder: (context) {
-              return BlocConsumer<AddNoteCubit, AddNoteState>(
+              return BlocListener<AddNoteCubit, AddNoteState>(
                 listener: (context, state) {
-                  if (state is AddNoteError) {
-                    debugPrint(state.errorMes);
-                  }
                   if (state is AddNoteSuccess) {
                     Navigator.pop(context);
                   }
+                  if (state is AddNoteError) {
+                    debugPrint(state.errorMes);
+                  }
                 },
-                builder: (context, state) {
-                  return ModalProgressHUD(
-                    inAsyncCall: state is AddNoteLoading ? true : false,
-                    child: addNewNote(),
-                  );
-                },
+                child: AddNewNote(),
               );
             },
           );

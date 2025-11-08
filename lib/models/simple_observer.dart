@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+// import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SimpleObserver implements BlocObserver {
@@ -10,12 +11,12 @@ class SimpleObserver implements BlocObserver {
 
   @override
   void onClose(BlocBase bloc) {
-    // TODO: implement onClose
+    log(bloc.toString());
   }
 
   @override
   void onCreate(BlocBase bloc) {
-    // TODO: implement onCreate
+    log(bloc.toString());
   }
 
   @override

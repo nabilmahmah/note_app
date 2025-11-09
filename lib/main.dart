@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:note_app/cubits/addNote/add_note_cubit.dart';
 import 'package:note_app/cubits/addNote/add_note_state.dart';
+import 'package:note_app/cubits/fetchNotes/Note_cubit.dart';
 import 'package:note_app/customs.dart';
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/models/simple_observer.dart';
@@ -22,8 +23,11 @@ class NoteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddNoteCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AddNoteCubit()),
+        BlocProvider(create: (context) => NoteCubit()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(brightness: Brightness.dark, fontFamily: "Poppins"),

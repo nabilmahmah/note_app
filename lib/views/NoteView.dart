@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:note_app/cubits/addNote/add_note_cubit.dart';
-import 'package:note_app/cubits/addNote/add_note_state.dart';
-import 'package:note_app/customs.dart';
-import 'package:note_app/widgets/NoteContainer.dart';
-import 'package:note_app/widgets/addNewNote.dart';
+import 'package:note_app/widgets/custom_floting_action_button.dart';
+import 'package:note_app/widgets/note_listview.dart';
 
 class Noteview extends StatelessWidget {
   const Noteview({super.key});
@@ -14,38 +9,12 @@ class Noteview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Text("Notes"),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Notecontainer(),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        foregroundColor: Colors.black,
-        backgroundColor: kprimaryColor,
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return BlocListener<AddNoteCubit, AddNoteState>(
-                listener: (context, state) {
-                  if (state is AddNoteSuccess) {
-                    Navigator.pop(context);
-                  }
-                  if (state is AddNoteError) {
-                    debugPrint(state.errorMes);
-                  }
-                },
-                child: AddNewNote(),
-              );
-            },
-          );
-        },
-        child: Icon(Icons.add),
-      ),
+      body: NoteListView(),
+      floatingActionButton: CustomFlotingActionButton(),
     );
   }
 }

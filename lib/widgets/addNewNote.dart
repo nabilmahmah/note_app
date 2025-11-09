@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:note_app/cubits/addNote/add_note_cubit.dart';
 import 'package:note_app/models/note_model.dart';
+import 'package:note_app/widgets/color_listview.dart';
 import 'package:note_app/widgets/customButton.dart';
 import 'package:note_app/widgets/customTexeField.dart';
 
@@ -22,9 +23,9 @@ class _AddNewNoteState extends State<AddNewNote> {
     GlobalKey<FormState> formkey = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      child: Form(
-        key: formkey,
-        child: SingleChildScrollView(
+      child: SingleChildScrollView(
+        child: Form(
+          key: formkey,
           child: Column(
             children: [
               Customtexefield(
@@ -41,7 +42,11 @@ class _AddNewNoteState extends State<AddNewNote> {
                   description = value;
                 },
               ),
-              SizedBox(height: height * 0.15),
+              SizedBox(height: height * 0.015),
+              ColorListview(),
+              // ColorItem(),
+              SizedBox(height: height * 0.015),
+
               CustomButton(
                 height: height,
                 onPressed: () {
@@ -69,7 +74,7 @@ class _AddNewNoteState extends State<AddNewNote> {
         title: title!,
         subtitle: description!,
         date: formattedDate,
-        color: Colors.yellow.value,
+        color: Colors.yellow.toARGB32(),
       );
       BlocProvider.of<AddNoteCubit>(context).addNote(note);
     }

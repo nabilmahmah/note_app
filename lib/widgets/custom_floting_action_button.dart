@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/addNote/add_note_cubit.dart';
 import 'package:note_app/cubits/addNote/add_note_state.dart';
+import 'package:note_app/cubits/fetchNotes/Note_cubit.dart';
 import 'package:note_app/customs.dart';
 import 'package:note_app/widgets/addNewNote.dart';
 
@@ -16,6 +17,7 @@ class CustomFlotingActionButton extends StatelessWidget {
       onPressed: () {
         showModalBottomSheet(
           context: context,
+          isScrollControlled: true,
           builder: (context) {
             // Use Padding with viewInsets so the modal rises above the keyboard
             return Padding(
@@ -25,6 +27,8 @@ class CustomFlotingActionButton extends StatelessWidget {
               child: BlocListener<AddNoteCubit, AddNoteState>(
                 listener: (context, state) {
                   if (state is AddNoteSuccess) {
+                    context.read<NoteCubit>().fetchAllNotes();
+
                     Navigator.pop(context);
                   }
                   if (state is AddNoteError) {

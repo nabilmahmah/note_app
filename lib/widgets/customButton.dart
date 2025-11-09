@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/addNote/add_note_cubit.dart';
 import 'package:note_app/cubits/addNote/add_note_state.dart';
 import 'package:note_app/customs.dart';
-import 'package:note_app/widgets/addNewNote.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

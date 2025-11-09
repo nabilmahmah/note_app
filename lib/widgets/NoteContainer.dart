@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/views/editeNoteView.dart';
+import 'package:note_app/models/note_model.dart';
 
 class Notecontainer extends StatelessWidget {
-  const Notecontainer({super.key});
+  const Notecontainer({super.key, required this.note});
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class Notecontainer extends StatelessWidget {
                   bottom: MediaQuery.of(context).size.height * 0.01,
                 ),
                 child: Text(
-                  "Title",
+                  note.title,
                   style: TextStyle(fontSize: 26, color: Colors.black),
                 ),
               ),
@@ -40,7 +43,7 @@ class Notecontainer extends StatelessWidget {
                   bottom: MediaQuery.of(context).size.height * 0.01,
                 ),
                 child: Text(
-                  "Description adakdjadkljdkasjda;djadsjdal",
+                  note.subtitle,
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ),
@@ -53,7 +56,7 @@ class Notecontainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "May 20,2023",
+                    note.date,
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 ],

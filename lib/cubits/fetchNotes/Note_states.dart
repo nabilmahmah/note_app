@@ -5,11 +5,11 @@ abstract class NoteState {}
 class NoteInitial extends NoteState {}
 
 class NoteSuccess extends NoteState {
-  final List<NoteModel> notes;
-  NoteSuccess(this.notes);
+	final List<NoteModel> notes;
+	NoteSuccess(this.notes);
 }
 
 class NoteError extends NoteState {
-  final String errorMes;
-  NoteError({required this.errorMes});
+	final String error;
+	NoteError(this.error);
 }

@@ -8,13 +8,15 @@ class Customtexefield extends StatelessWidget {
     this.maxLines = 1,
     this.onChanged,
   });
+
   final int maxLines;
   final String title;
-  final void Function(String?)? onChanged;
+  final ValueChanged<String>? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.all(8),
+      padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         validator: (value) {
           if (value?.isEmpty ?? true) {

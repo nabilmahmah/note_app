@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:note_app/customs.dart';
 
 class Customtexefield extends StatelessWidget {
-  Customtexefield({
+  const Customtexefield({
     super.key,
     required this.title,
     this.maxLines = 1,
     this.onChanged,
     this.initialValue,
   });
-  String? initialValue;
+  final String? initialValue;
   final int maxLines;
   final String title;
   final ValueChanged<String>? onChanged;

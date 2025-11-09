@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/fetchNotes/Note_cubit.dart';
 import 'package:note_app/views/editeNoteView.dart';
 import 'package:note_app/models/note_model.dart';
+import 'package:note_app/utils/responsive.dart';
 
 class Notecontainer extends StatelessWidget {
   const Notecontainer({super.key, required this.note});
@@ -11,6 +12,8 @@ class Notecontainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bg = Color(note.color);
+    final textColor = bg.computeLuminance() > 0.5 ? Colors.black : Colors.white;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -19,10 +22,14 @@ class Notecontainer extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
+        padding: EdgeInsets.only(
+          top: Responsive.hp(context, 2.5),
+          bottom: Responsive.hp(context, 2.5),
+          left: Responsive.wp(context, 4),
+        ),
         decoration: BoxDecoration(
-          color: Color(note.color),
-          borderRadius: BorderRadius.circular(16),
+          color: bg,
+          borderRadius: BorderRadius.circular(Responsive.wp(context, 3)),
         ),
         child: Column(
           children: [
@@ -32,37 +39,44 @@ class Notecontainer extends StatelessWidget {
                   note.delete();
                   BlocProvider.of<NoteCubit>(context).fetchAllNotes();
                 },
-                icon: Icon(Icons.delete, color: Colors.black, size: 40),
+                icon: Icon(
+                  Icons.delete,
+                  color: textColor,
+                  size: Responsive.sp(context, 5),
+                ),
               ),
               title: Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.01,
-                ),
+                padding: EdgeInsets.only(bottom: Responsive.hp(context, 1)),
                 child: Text(
                   note.title,
-                  style: TextStyle(fontSize: 26, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: Responsive.sp(context, 4.5),
+                    color: textColor,
+                  ),
                 ),
               ),
               subtitle: Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.01,
-                ),
+                padding: EdgeInsets.only(bottom: Responsive.hp(context, 1)),
                 child: Text(
                   note.subtitle,
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: TextStyle(
+                    fontSize: Responsive.sp(context, 3.2),
+                    color: textColor.withOpacity(0.85),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                right: MediaQuery.of(context).size.width * 0.03,
-              ),
+              padding: EdgeInsets.only(right: Responsive.wp(context, 3)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     note.date,
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: Responsive.sp(context, 3.2),
+                      color: textColor.withOpacity(0.8),
+                    ),
                   ),
                 ],
               ),

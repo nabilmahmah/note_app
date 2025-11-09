@@ -8,11 +8,7 @@ class Noteview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text("Notes"),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
-      ),
+      appBar: AppBar(centerTitle: true, title: Text("Notes")),
       body: NoteListView(),
       floatingActionButton: CustomFlotingActionButton(),
     );

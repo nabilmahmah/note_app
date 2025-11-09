@@ -21,6 +21,17 @@ class _ColorListviewState extends State<ColorListview> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    // initialize selectedIndex from cubit's selected color if available
+    try {
+      final sel = context.read<AddNoteCubit>().selectedColor;
+      final idx = colors.indexWhere((c) => c.value == sel.value);
+      if (idx >= 0) selectedIndex = idx;
+    } catch (_) {}
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40 * 2,

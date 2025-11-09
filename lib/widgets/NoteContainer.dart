@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/cubits/fetchNotes/Note_cubit.dart';
 import 'package:note_app/views/editeNoteView.dart';
 import 'package:note_app/models/note_model.dart';
 
@@ -13,7 +15,7 @@ class Notecontainer extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Editenoteview()),
+          MaterialPageRoute(builder: (context) => Editenoteview(note: note)),
         );
       },
       child: Container(
@@ -26,7 +28,10 @@ class Notecontainer extends StatelessWidget {
           children: [
             ListTile(
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NoteCubit>(context).fetchAllNotes();
+                },
                 icon: Icon(Icons.delete, color: Colors.black, size: 40),
               ),
               title: Padding(

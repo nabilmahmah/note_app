@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:note_app/customs.dart';
 
 class Customtexefield extends StatelessWidget {
-  const Customtexefield({
+  Customtexefield({
     super.key,
     required this.title,
     this.maxLines = 1,
     this.onChanged,
+    this.initialValue,
   });
-
+  String? initialValue;
   final int maxLines;
   final String title;
   final ValueChanged<String>? onChanged;
@@ -18,6 +19,7 @@ class Customtexefield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        initialValue: initialValue,
         validator: (value) {
           if (value?.isEmpty ?? true) {
             return "this field is required";
@@ -27,6 +29,7 @@ class Customtexefield extends StatelessWidget {
         },
         onChanged: onChanged,
         maxLines: maxLines,
+
         decoration: InputDecoration(
           border: outLineBorder(),
           focusedBorder: outLineBorder(),

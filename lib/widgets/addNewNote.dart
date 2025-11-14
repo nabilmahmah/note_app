@@ -16,11 +16,11 @@ class AddNewNote extends StatefulWidget {
 
 class _AddNewNoteState extends State<AddNewNote> {
   String? title, description;
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    GlobalKey<FormState> formkey = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: SingleChildScrollView(
@@ -69,7 +69,7 @@ class _AddNewNoteState extends State<AddNewNote> {
     if (formkey.currentState!.validate()) {
       formkey.currentState!.save();
       var currentDate = DateTime.now();
-      var formattedDate = DateFormat('yyyy-mm-dd').format(currentDate);
+      var formattedDate = DateFormat.yMMMMd().format(currentDate);
       var note = NoteModel(
         title: title!,
         subtitle: description!,

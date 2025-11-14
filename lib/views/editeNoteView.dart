@@ -55,7 +55,7 @@ class _EditenoteviewState extends State<Editenoteview> {
           ),
         ],
       ),
-      body: Column(
+      body: ListView(
         children: [
           Customtexefield(
             title: "Tite",

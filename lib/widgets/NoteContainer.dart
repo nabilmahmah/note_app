@@ -42,7 +42,7 @@ class Notecontainer extends StatelessWidget {
                 icon: Icon(
                   Icons.delete,
                   color: textColor,
-                  size: Responsive.sp(context, 5),
+                  size: Responsive.sp(context, 7),
                 ),
               ),
               title: Padding(
